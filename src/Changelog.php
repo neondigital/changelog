@@ -16,7 +16,7 @@ class Changelog
 {
     protected array $notifyEmails = [];
 
-    public function getLatestRelease(): mixed
+    public function getLatestRelease(): ?ChangelogEntry
     {
         return $this->getReleases()->first();
     }
@@ -82,10 +82,13 @@ class Changelog
     {
         $mailer = (new ReleaseMailer($release));
 
-        $queue = config('changelog.queue');
+        $queue = config('changelog.queue_mail');
+
+        if ($queue && is_string($queue)) {
+            $mailer->onQueue($queue);
+        }
 
         if ($queue) {
-            $mailer->onQueue($queue);
             Mail::to($this->notifyEmails)->queue($mailer);
             return;
         }

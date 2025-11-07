@@ -12,7 +12,6 @@ class ChangelogServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/changelog.php', 'changelog');
 
-
         $this->app->singleton('changelog', function ($app) {
             return new Changelog;
         });
@@ -23,6 +22,12 @@ class ChangelogServiceProvider extends ServiceProvider
         $this->commands([
             ReleaseCommand::class,
         ]);
+
+        $this->publishes([
+            __DIR__.'/../config/changelog.php' => config_path('changelog.php'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/changelog'),
+        ]);
+
         $this->loadViewComponentsAs('neon', [
             \Neondigital\Changelog\View\Changelog::class,
         ]);

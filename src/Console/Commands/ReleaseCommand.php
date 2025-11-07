@@ -41,8 +41,5 @@ class ReleaseCommand extends Command
         );
 
         Changelog::release($latestRelease);
-
-
-        dd($manifest);
     }
 }
