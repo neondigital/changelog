@@ -53,8 +53,13 @@
             <tr>
               <td style="border-radius: 8px; background-color: #f5f5f4; padding: 4px; border: 1px solid #e2e8f0">
                 <div class="sm-p-6" style="border-radius: 8px; background-color: #fffffe; padding: 24px 36px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0">
-                  <a href="https://maizzle.com">
+
+                  <a href="{{ url('/') }}">
+                    @if(config('changelog.logo'))
                     <img src="{{ url(config('changelog.logo')) }}" width="150" alt="Maizzle" style="max-width: 100%; vertical-align: middle">
+                    @else
+                    {{ config('app.name') }}
+                    @endif
                   </a>
                   <div role="separator" style="line-height: 24px">&zwj;</div>
                   <h1 style="margin: 0; font-size: 24px; line-height: 32px; font-weight: 600; color: #0f172a">
