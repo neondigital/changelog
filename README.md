@@ -54,3 +54,14 @@ You can send changelog notifications to an array of email addresses:
 ```
 
 You can override the published views in `views/vendor/changelog`.
+
+### Publishing a release
+
+To publish a release and send out notifications you just need to call:
+
+```bash
+php artisan changelog:release
+```
+
+This will create a release manifest with the latest release and send out any emails as defined using the `notifiyOnRelease` method. 
+The creation of the manifest file ensures you can call this command repeatedly without the worry of sending multiple notifications.
